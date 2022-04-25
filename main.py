@@ -4,7 +4,9 @@ import setup
 Variables
 """
 client = setup.get_client()
-retard_list = ['thierrybaudet', 'berend210']
+#               dommee bitch  HEEEEL INTERESSANT
+target_list = ['thierrybaudet', 'langefrans']
+
 
 
 """
