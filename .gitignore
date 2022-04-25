@@ -1,5 +1,6 @@
 # Files to ignore because of sensitive data
 setup.py
+bot.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
