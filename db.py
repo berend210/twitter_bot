@@ -30,7 +30,14 @@ Queries for Tweets
 
 
 def add_tweet(tweet_text, tweet_id, acc_id, acc_name, response):
-    # Function to insert a tuple in the tweets
+    """
+    Function to add a tweet to the Tweets db
+    :param tweet_text: The text in a tweet
+    :param tweet_id: The id from a tweet
+    :param acc_id: The id from the account that posted the tweet
+    :param acc_name: The Twitter name from the account
+    :param response: A bool that's used to check if the bot has responded to the tweet
+    """
     c.execute("INSERT INTO Tweets (tweet_text, tweet_id, acc_id, acc_name, response)"
               "VALUES (?, ?, ?, ?, ?)", (tweet_text, tweet_id, acc_id, acc_name, response))
     conn.commit()
