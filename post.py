@@ -1,4 +1,12 @@
+import main
 
+def post_tweet(tweet):
+    """
+    Posts tweet to the Twitter API, variable 'client' from main.py
+    :param tweet: Tweet to be posted to the API
+    :return: nothing, its a void... That's why you don't do drugs kids!
+    """
+    main.client.create_tweet(tweet)
 
 def ret_speech(original_text):
     """
