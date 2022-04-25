@@ -1,3 +1,6 @@
+# IntelliJ stuffs
+.idea*
+
 # Files to ignore because of sensitive data
 setup.py
 bot.db
