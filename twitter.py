@@ -2,13 +2,22 @@ import main
 
 api = main.client
 
-def update_timelines(do_print = False):
+def update_timelines(start_time = None, do_print = False):
 	""""
+	COUNTS TOWARDS MONTHLY CAP!!
 	Gets a timeline update (latest 10 tweets) from all the targeted users
 	optional: print all the results
 	"""
+
+
 	targets = main.target_ids_list
 	responses = []
+
+	if (start_time != None):
+		#TODO: api call that inludes start_time (uses Oauth2.0)
+		#for target in targets:
+		#	responses.append(api.get_users_tweets(start_time=s start_time target))
+
 	for target in targets:
 		responses.append(api.get_users_tweets(target))
 
