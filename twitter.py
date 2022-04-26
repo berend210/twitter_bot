@@ -36,7 +36,7 @@ def build_tweet(input, is_retarded = False):
 
 def post_tweet(tweet):
     """
-    Posts tweet to the Twitter API, variable 'client' from main.py
+    Posts tweet to the Twitter API
     :param tweet: Tweet to be posted to the API
     :return: status of creation of the tweet
     """
