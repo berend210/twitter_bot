@@ -13,6 +13,9 @@ def response(prompt=None, tokens=10, engine=3):
     :param engine: Which engine to use
     :return:
     """
+    if prompt is None:
+        return "Try again bitch"
+
     engine_type = ["text-davinci-002", "text-curie-001", "text-babbage-001", "text-ada-001"]
     # Temperature is always 1 as we want the api to take as much risk as possible
     resp = openai.Completion.create(engine=engine_type[engine], prompt=prompt, temperature=1, max_tokens=tokens)
