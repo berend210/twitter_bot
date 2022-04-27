@@ -23,4 +23,3 @@ def response(prompt=None, tokens=10, engine=3):
 def test_openai3():
     out = response(prompt="Motivational quote", tokens=30)
     print(out)
-    
