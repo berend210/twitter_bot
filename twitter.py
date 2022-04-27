@@ -34,6 +34,16 @@ def build_tweet(input, is_retarded = False):
 	response = post_tweet(text)
 	print(response)
 
+
+
+def reply_to_with(tweet_id, reply):
+	"""
+	Replies to comment tweet_id with reply reply
+	:param tweet_id: comment to reply on
+	:param reply: the reply that will be posted
+	"""
+	api.create_tweet(text=reply, in_reply_to_tweet_id=tweet_id)
+
 def post_tweet(tweet):
     """
     Posts tweet to the Twitter API

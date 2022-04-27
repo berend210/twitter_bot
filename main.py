@@ -1,5 +1,4 @@
 import setup
-import twitter
 
 """"
 Variables
