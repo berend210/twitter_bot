@@ -4,7 +4,7 @@ We're gonna build a twitter bot that's able to respond to other users with gener
 # Dependencies
 To use this bot you will need to install the following packages:
 - Tweepy
-- OpenAI
+- OpenAI GPT-3
 - Scheduler
 
 # Setup
