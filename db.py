@@ -43,5 +43,7 @@ def add_tweet(tweet_text, tweet_id, acc_id, acc_name, response):
     conn.commit()
 
 
-add_tweet("bla", 123, 456, "dick", True)
-
+def check_tweet_id(tweet_id):
+    c.execute("SELECT COUNT(*) FROM Tweets WHERE tweet_id = ?", (tweet_id,))
+    count = c.fetchall()[0][0]
+    return count

@@ -14,7 +14,7 @@ def response(prompt=None, tokens=10, engine=3):
     :return:
     """
     if prompt is None:
-        return "Try again bitch"
+        return "Try again please"
 
     engine_type = ["text-davinci-002", "text-curie-001", "text-babbage-001", "text-ada-001"]
     # Temperature is always 1 as we want the api to take as much risk as possible
