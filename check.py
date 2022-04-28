@@ -8,7 +8,6 @@ def store(response, username, user_id):
     :param response: Response object gotten with a GET request
     :param username: Username from the tweets owner
     :param user_id: User id from the tweets owner
-    :return: Nothing
     """
     data = response[0]
     for tweet in data:
