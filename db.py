@@ -47,9 +47,3 @@ def check_tweet_id(tweet_id):
     c.execute("SELECT COUNT(*) FROM Tweets WHERE tweet_id = ?", (tweet_id,))
     count = c.fetchall()[0][0]
     return count
-
-
-#print(check_tweet_id(123))
-
-#add_tweet("bla", 123, 456, "dick", True)
-
