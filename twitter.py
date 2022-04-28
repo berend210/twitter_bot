@@ -36,13 +36,13 @@ def build_tweet(input, is_retarded = False):
 
 
 
-def reply_to_with(tweet_id, reply):
+def reply_to_with(tweet_id, text):
 	"""
 	Replies to comment tweet_id with reply reply
 	:param tweet_id: comment to reply on
-	:param reply: the reply that will be posted
+	:param text: the reply that will be posted
 	"""
-	api.create_tweet(text=reply, in_reply_to_tweet_id=tweet_id)
+	api.create_tweet(text=text, in_reply_to_tweet_id=tweet_id)
 
 def post_tweet(tweet):
     """
@@ -55,7 +55,9 @@ def post_tweet(tweet):
 
 def ret_speech(original_text):
     """
-    :param original_text: string of input words to be converted
+    Converts a string literal to a version where capital letters
+    are interchanged with normal letters in alternating fashion.
+    :param: original_text: string of input words to be converted
     :return: original text, but in ret speech, aka "Hello World!" -> "hElLo WoRlD!"
     """
     original_text = original_text.casefold()
