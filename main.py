@@ -1,3 +1,5 @@
+import re
+
 import filter
 import setup
 
@@ -31,7 +33,7 @@ def testing():
 	#target_ids_list = get_user_ids()
 
 	text = "Met Gijs en @berryoost ; voor alle mensen aan de hossel. https://t.co/xiKniUeVJP https://t.co/6VKJPMRhVf"
-	result = filter.filter_url(text)
+	result = filter.filter_all(text)
 	print(result)
 	pass
 
