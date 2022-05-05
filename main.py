@@ -1,3 +1,4 @@
+import filter
 import setup
 
 """"
@@ -21,8 +22,20 @@ def testing():
 
 	# Gets the information from a user, to extract ID
 	# get_user_response("langefrans")
-	target_ids_list = get_user_ids()
+
+	# response = client.get_users_tweets(1515353783567634446)
+	# print(response.data[0].text)
+	#
+	# for character in response.data[0].text:
+	# 	print(str(character), ", ", ord(character))
+	#target_ids_list = get_user_ids()
+
+	text = "Met Gijs en @berryoost ; voor alle mensen aan de hossel. https://t.co/xiKniUeVJP https://t.co/6VKJPMRhVf"
+	result = filter.filter_url(text)
+	print(result)
 	pass
+
+
 
 def get_user_ids():
 	"""
