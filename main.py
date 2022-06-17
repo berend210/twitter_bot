@@ -1,67 +1,74 @@
-import re
-
+import check
 import filter
 import setup
+import schedule
+import time
+
 
 """"
 Variables
 """
 client = setup.get_client()
-#               dommee bitch  HEEEEL INTERESSANT
-target_list = ['thierrybaudet', 'langefrans']
+
+target_list = setup.get_target_users()
 target_ids_list = [367703310, 45412015]
-
-
 
 """
 Functions
 """
+
+
 # Method for testing methods and api calls
 def testing():
-
-	# Posts a retard speech tweet with message of input string
-	#twitter.build_tweet("HelloWorlD!", True)
-
-	# Gets the information from a user, to extract ID
-	# get_user_response("langefrans")
-
-	# response = client.get_users_tweets(1515353783567634446)
-	# print(response.data[0].text)
-	#
-	# for character in response.data[0].text:
-	# 	print(str(character), ", ", ord(character))
-	#target_ids_list = get_user_ids()
-
-	text = "Met Gijs en @berryoost ; voor alle mensen aan de hossel. https://t.co/xiKniUeVJP https://t.co/6VKJPMRhVf"
-	result = filter.filter_all(text)
-	print(result)
-	pass
-
+    text = "Met Gijs en @berryoost ; voor alle mensen aan de hossel. https://t.co/xiKniUeVJP https://t.co/6VKJPMRhVf"
+    result = filter.filter_all(text)
+    print(result)
+    pass
 
 
 def get_user_ids():
-	"""
-	Sets all the ids for the users,
-	so we only have to input usernames
-	"""
-	target_ids = []
-	for target in target_list:
-		user = client.get_user(username=target)
-		target_ids.append(user.data.id)
+    """
+    Sets all the ids for the users,
+    so we only have to input usernames
+    """
+    target_ids = []
+    for target in target_list:
+        user = client.get_user(username=target)
+        target_ids.append(user.data.id)
 
-	# for id in target_ids:
-	# 	print(id)
+    return target_ids
 
-	return target_ids
 
 def get_user_response(username):
-	user = client.get_user(username=username)
-	print("USER: " + str(user))
-	return user
+    user = client.get_user(username=username)
+    print("USER: " + str(user))
+    return user
+
 
 """"
 Executables
 """
-if __name__ == "__main__":
-	testing()
 
+
+# if __name__ == "__main__":
+#     testing()
+
+
+"""
+Scheduler
+"""
+# Updating the timelines
+# Importing random tweets
+# Replying to other people
+# Posting random tweets
+
+
+# Updates the mentions every 5 minutes
+schedule.every(5).seconds.do(check.update)
+# Updates the tweets db every 5 minutes
+# schedule.every(5).minutes.do(twitter.update_timelines)
+
+# TODO: Uncomment the code underneath when work on the scheduler is done
+while True:
+    schedule.run_pending()
+    time.sleep(1)
