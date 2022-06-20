@@ -59,13 +59,13 @@ def get_last_id(acc_name=None):
         tweet_id = c.fetchall()[0][0]
         conn.commit()
     except:
-        tweet_id = 0
+        tweet_id = 1538571609807769601
 
     return tweet_id
 
 def get_tweet_for_response():
     try:
-        c.execute("SELECT tweet_id, text FROM Tweets WHERE response = 0 ORDER BY tweet_id LIMIT 1")
+        c.execute("SELECT tweet_id, tweet_text FROM Tweets WHERE response = 0 ORDER BY tweet_id LIMIT 1")
         tweet = c.fetchall()[0]
         conn.commit()
     except:
