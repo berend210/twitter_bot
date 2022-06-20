@@ -8,7 +8,7 @@ def get_username(id):
     return api.get_user(id=id)[0]['username']
 
 
-def update_timelines(users, do_print=False):
+def update_timelines(users, last_id, do_print=False):
     """
     COUNTS TOWARDS MONTHLY CAP!!
     Gets a timeline update (latest 10 tweets) from all the targeted users
@@ -19,8 +19,7 @@ def update_timelines(users, do_print=False):
     responses = []
 
     for target in targets:
-        since = db.get_last_id(target)
-        db.store(api.get_users_tweets(target, since_id=since), get_username(target), target)
+        db.store(api.get_users_tweets(target, since_id=last_id), get_username(target), target)
 
     if do_print:
         for response in responses:
@@ -29,9 +28,9 @@ def update_timelines(users, do_print=False):
     return responses
 
 
-def update_mentions(do_print=False):
+def update_mentions(last_id, do_print=False):
     id = 1515353783567634446
-    response = api.get_users_mentions(id=id, since_id=db.get_last_id(), max_results=10)
+    response = api.get_users_mentions(id=id, since_id=last_id, max_results=10)
     db.store(response=response)
 
     if do_print is True and response[0] is not None:
@@ -40,6 +39,19 @@ def update_mentions(do_print=False):
             print(tweet)
 
     return response
+
+
+def update_replies(last_id, do_print=False):
+    response = api.search_recent_tweets(query="to:bvjanwillem", since_id=last_id, max_results=10)
+    db.store(response=response)
+
+    if do_print is True and response[0] is not None:
+        print(response)
+        for tweet in response[0]:
+            print(tweet)
+
+    return response
+
 
 
 def build_tweet(input, is_retarded=False):
@@ -56,6 +68,8 @@ def reply_to_with(tweet_id, text):
     :param tweet_id: comment to reply on
     :param text: the reply that will be posted
     """
+    print(text + " : ")
+    print(tweet_id)
     api.create_tweet(text=text, in_reply_to_tweet_id=tweet_id)
 
 
