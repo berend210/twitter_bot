@@ -64,9 +64,9 @@ Scheduler
 
 
 # Updates the mentions every 5 minutes
-schedule.every(5).seconds.do(check.update)
+schedule.every(2).minutes.do(check.update)
 # Updates the tweets db every 5 minutes
-# schedule.every(5).minutes.do(twitter.update_timelines)
+schedule.every(2).minutes.do(check.reply)
 
 # TODO: Uncomment the code underneath when work on the scheduler is done
 while True:
