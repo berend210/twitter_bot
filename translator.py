@@ -1,33 +1,23 @@
-import requests
+from deep_translator import GoogleTranslator
 
 
-def translate(input, first, to):
-    url = "https://libretranslate.de/translate"
-
-    payload = {
-        "q": input,
-        "source": first,
-        "target": to,
-        "format": "text"
-    }
-
-    headers = {
-        "Content-Type": "application/json"
-    }
-
-    response = requests.request("POST", url, headers=headers, json=payload)
-
-    for target in response:
-        string = str(target, 'utf-8')
-        if "\\u00eb" in string:
-            string = string.replace("\\u00eb", "ë")
-        if "\\n" or "\\n\\n" in string[19:-3]:
-            string = string[19:-3].partition("\\")[0]
-            return string
-
-    return string[19:-3]
+def translate(input, first='auto', to="nl"):
+    """
+    Translator function which can be used to translate given inputs. Automatically set to detect and then translate to
+    Dutch.
+    :param input: string which has to be translated.
+    :param first: current language.
+    :param to: target language.
+    :return: translated prompt.
+    """
+    translated = GoogleTranslator(source=first, target=to).translate(input)
+    return translated
 
 
 def test_translate():
-    t = translate("What are your bullies' reasons for trying to make you feel down? \n Some bullies may be because they", "en", "nl")
+    """
+    Test function for translating
+    :return: None
+    """
+    t = translate("What are you doing here Putin? You're not supposed to cross these borders!", "en", "nl")
     print(t)
