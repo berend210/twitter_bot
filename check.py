@@ -32,7 +32,7 @@ def reply():
         tweet_acc = tweet[2]
 
         # Has a chance of replying on someone's tweet
-        if tweet_acc is not None and random.randint(0, 10) > 5:
+        if tweet_acc is not None and random.randint(0, 10) > 2:
             db.update_response(1, tweet_id)
             return
 
@@ -43,11 +43,14 @@ def reply():
         if response is None:
             return
 
+        # Respond to the tweet & update the Tweets table
+        success = twitter.reply_to_with(tweet_id, response)
+
+        if not success:
+            return
+
         # Insert generated response in table
         db.insert_response(response, "openai3")
-
-        # Respond to the tweet & update the Tweets table
-        twitter.reply_to_with(tweet_id, response)
         db.update_response(1, tweet_id)
 
 
