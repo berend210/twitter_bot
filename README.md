@@ -1,5 +1,5 @@
 # Twitter Bot
-We're gonna build a twitter bot that's able to respond to other users with generated messages.
+We've build a twitter bot that's able to respond to other users with generated messages. Make sure to use this bot responsibly since it would be possible to use it for wrong purposes and bad motivations.
 
 # Dependencies
 To use this bot you will need to install the following packages:
