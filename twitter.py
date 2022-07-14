@@ -1,3 +1,5 @@
+import tweepy.errors
+
 import db
 import setup
 
@@ -77,7 +79,16 @@ def reply_to_with(tweet_id, text):
     :param tweet_id: comment to reply on.
     :param text: the reply that will be posted.
     """
-    api.create_tweet(text=text, in_reply_to_tweet_id=tweet_id)
+    try:
+        api.create_tweet(text=text, in_reply_to_tweet_id=tweet_id)
+    except Exception as inst:
+        print("ERROR: ")
+        print(type(inst))
+        if type(inst) == tweepy.errors.Forbidden:
+            return True
+
+        return False
+    return True
 
 
 def post_tweet(tweet, is_ret=False):

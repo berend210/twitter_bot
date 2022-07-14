@@ -22,8 +22,6 @@ def prompt_builder(text):
     return prompt
 
 
-# TODO: Zinnen checken of ze lijken op de inp en dan Retard speech toevoegen
-# TODO: Taalfilter bouwen
 def response(prompt=None, tokens=25, engine=3, translate_nl=True, build_prompt=True):
     """
     Function which gets a gpt-3 completion response by the OpenAI API.
@@ -43,7 +41,6 @@ def response(prompt=None, tokens=25, engine=3, translate_nl=True, build_prompt=T
 
     if translate_nl:
         prompt = translator.translate(prompt, "auto", "en")
-        print("First translation: " + prompt)
 
     if build_prompt:
         prompt = prompt_builder(prompt)
@@ -75,6 +72,3 @@ def test_openai3():
     """
     out = response(prompt="Beren", tokens=22, build_prompt=True)
     print("Test openAI API: " + out)
-
-
-test_openai3()
