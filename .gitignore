@@ -5,6 +5,7 @@
 setup.py
 bot.db
 .idea/
+*.log
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
