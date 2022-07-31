@@ -1,4 +1,5 @@
 import sqlite3
+import logger
 
 conn = sqlite3.connect('bot.db')
 c = conn.cursor()
@@ -59,7 +60,7 @@ def get_last_id(acc_name=None):
         tweet_id = c.fetchall()[0][0]
         conn.commit()
     except:
-        tweet_id = 1538571609807769601
+        tweet_id = None
 
     return tweet_id
 
@@ -102,3 +103,6 @@ def store(response, username=None, user_id=None):
     for tweet in data:
         if check_tweet_id(tweet["id"]) == 0:
             add_tweet(tweet["text"], tweet["id"], user_id, username, False)
+            logger.log('Stored tweet '  + tweet["id"] + ' in db.')
+    
+    

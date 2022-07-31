@@ -4,6 +4,7 @@ import openai3
 import twitter
 import setup
 import random
+import logger
 
 
 # Check functions
@@ -32,8 +33,9 @@ def reply():
         tweet_acc = tweet[2]
 
         # Has a chance of replying on someone's tweet
-        if tweet_acc is not None and random.randint(0, 10) > 2:
+        if tweet_acc is not None and random.randint(0, 10) > 7:
             db.update_response(1, tweet_id)
+            logger.log("Not responded to: " + tweet_id + ", has been processed.")
             return
 
         # Generate a response
@@ -52,6 +54,7 @@ def reply():
         # Insert generated response in table
         db.insert_response(response, "openai3")
         db.update_response(1, tweet_id)
+        logger.log("Responded to: " + tweet_id + ", has been processed.")
 
 
 def post():  # TODO: generate random tweets

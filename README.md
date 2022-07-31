@@ -3,6 +3,7 @@ We've build a twitter bot that's able to respond to other users with generated m
 
 # Dependencies
 To use this bot you will need to install the following packages:
+- Openai.py
 - Tweepy.py
 - Scheduler.py
 - Discord.py

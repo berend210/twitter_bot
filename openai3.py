@@ -3,10 +3,14 @@ import setup
 import translator
 import random
 import twitter
+import logger
 from difflib import SequenceMatcher
 
 # Load your API key from an environment variable or secret management service
 openai.api_key = setup.get_openai()
+
+# Setup file logger
+FORMAT = '%(asctie)s '
 
 
 def prompt_builder(text):
@@ -62,6 +66,7 @@ def response(prompt=None, tokens=25, engine=3, translate_nl=True, build_prompt=T
         text = twitter.ret_speech(text)
 
     print("Final resp: " + text)
+    logger.log("Final resp: " + text)
     return text
 
 
@@ -70,5 +75,5 @@ def test_openai3():
     OpenAI test function.
     :return: None.
     """
-    out = response(prompt="Beren", tokens=22, build_prompt=True)
+    out = response(prompt="Give a motivational quote please.", tokens=22, build_prompt=True)
     print("Test openAI API: " + out)
