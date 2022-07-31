@@ -1,5 +1,5 @@
 import tweepy.errors
-
+from datetime import datetime, timedelta
 import db
 import setup
 
@@ -25,9 +25,13 @@ def update_timelines(users, last_id, do_print=False):
     """
     targets = get_user_ids(users)
     responses = []
+    since_date = None
+
+    if last_id == None:
+        since_date = datetime.now() - timedelta(days=6)
 
     for target in targets:
-        db.store(api.get_users_tweets(target, since_id=last_id, max_results=5), get_username(target), target)
+        db.store(api.get_users_tweets(target, since_id=last_id, max_results=5, start_time=since_date), get_username(target), target)
 
     if do_print:
         for response in responses:
@@ -44,7 +48,13 @@ def update_mentions(last_id, do_print=False):
     :return: Response object.
     """
     id = 1515353783567634446
-    response = api.get_users_mentions(id=id, since_id=last_id, max_results=10)
+    
+    since_date = None
+
+    if last_id == None:
+        since_date = datetime.now() - timedelta(days=6)
+    
+    response = api.get_users_mentions(id=id, since_id=last_id, max_results=10, start_time=since_date)
     db.store(response=response)
 
     if do_print is True and response[0] is not None:
@@ -62,7 +72,13 @@ def update_replies(last_id, do_print=False):
     :param do_print: boolean for printing the results.
     :return: Response object.
     """
-    response = api.search_recent_tweets(query="to:" + setup.get_bot_name(), since_id=last_id, max_results=10)
+    
+    since_date = None
+
+    if last_id == None:
+        since_date = datetime.now() - timedelta(days=6)
+    
+    response = api.search_recent_tweets(query="to:" + setup.get_bot_name(), since_id=last_id, max_results=10, start_time=since_date)
     db.store(response=response)
 
     if do_print is True and response[0] is not None:
@@ -137,4 +153,3 @@ def ret_speech(original_text):
         result_text += c
 
     return result_text
-
