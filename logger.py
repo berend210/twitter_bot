@@ -5,7 +5,3 @@ logging.info('----------- logging started -------------')
 
 def log(message):
     logging.info(message)
-
-
-log("The crontab works! Hooray :)")
-print("croonnnieijiefjdalf")

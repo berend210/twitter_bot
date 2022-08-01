@@ -103,6 +103,6 @@ def store(response, username=None, user_id=None):
     for tweet in data:
         if check_tweet_id(tweet["id"]) == 0:
             add_tweet(tweet["text"], tweet["id"], user_id, username, False)
-            logger.log('Stored tweet '  + tweet["id"] + ' in db.')
+            logger.log('Stored tweet '  + str(tweet["id"]) + ' in db.')
     
     

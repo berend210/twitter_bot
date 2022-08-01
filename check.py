@@ -17,6 +17,7 @@ def update():
     twitter.update_mentions(last_id=last_id)
     twitter.update_replies(last_id=last_id)
     twitter.update_timelines(users=setup.get_target_users(), last_id=last_id)
+    logger.log("Updated Tweets in check.py.")
 
 
 # Post functions
@@ -54,7 +55,7 @@ def reply():
         # Insert generated response in table
         db.insert_response(response, "openai3")
         db.update_response(1, tweet_id)
-        logger.log("Responded to: " + tweet_id + ", has been processed.")
+        logger.log("Responded to: " + str(tweet_id) + ". Text: " + response)
 
 
 def post():  # TODO: generate random tweets
