@@ -21,7 +21,9 @@ def prompt_builder(text):
     """
     prompt_list = setup.get_prompts()
     chance = random.randint(0, len(prompt_list) - 1)
-    prompt = prompt_list[chance][0].replace("#text#", text)
+    prompt = prompt_list[chance][0]
+    if text is not None:
+        prompt = prompt.replace("#text#", text)
     print(prompt_list[chance][1])
     return prompt
 
