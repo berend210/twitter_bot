@@ -2,6 +2,7 @@ import tweepy.errors
 from datetime import datetime, timedelta
 import db
 import setup
+import logger
 
 api = setup.get_client()
 
@@ -100,6 +101,7 @@ def reply_to_with(tweet_id, text):
     except Exception as inst:
         print("ERROR: ")
         print(type(inst))
+        logger.warning("ERROR: " + repr(inst) + ", " + str(inst))
         if type(inst) == tweepy.errors.Forbidden:
             return True
 

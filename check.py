@@ -34,9 +34,9 @@ def reply():
         tweet_acc = tweet[2]
 
         # Has a chance of replying on someone's tweet
-        if tweet_acc is not None and random.randint(0, 10) > 7:
+        if tweet_acc is not None and random.randint(0, 10) > 5:
             db.update_response(1, tweet_id)
-            logger.log("Not responded to: " + tweet_id + ", has been processed.")
+            logger.log("Not responded to: " + str(tweet_id) + ", has been processed.")
             return
 
         # Generate a response
