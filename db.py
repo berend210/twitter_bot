@@ -61,8 +61,9 @@ def get_last_id(acc_name=None):
         conn.commit()
     except:
         tweet_id = None
-
+    
     return tweet_id
+        
 
 def get_tweet_for_response():
     try:
